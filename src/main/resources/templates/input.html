@@ -16,7 +16,12 @@
   <form th:action="@{/submit}" th:object="${userOrderForm}" class="form-horizontal" method="post">
     <div class="progress-icon">
       <img src="../img/progress_input.svg" />
-    </div>
+    </div><font color="red">
+              <ul th:if="${#fields.hasErrors('email')}">
+                <li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+              </ul>
+            </font>
+
     <div class="page-title">
       お見積り情報入力
     </div>
@@ -42,7 +47,7 @@
         <div class="sub-title">お引越し希望月</div>
         <div class="form-group">
           <label for="month">連絡先メールアドレス</label>
-          <!--          <input type="text" id="month" name="month" th:field="*{month}" class="form-control" value="4月"/>-->
+                    <input type="text" id="month" name="month" th:field="*{month}" class="form-control" value="4月"/>
           <select id="month" name="month" class="form-control">
             <option th:value="1">1月</option>
             <option th:value="2">2月</option>
